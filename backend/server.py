@@ -371,7 +371,7 @@ async def search_documents(
 Your task is to analyze the user's search query and find the most relevant documents from the provided list.
 
 Documents available:
-{doc_list}
+""" + str(doc_summaries) + """
 
 For each relevant document, return a JSON object with:
 - document_id: The ID of the document
@@ -383,10 +383,10 @@ If no documents match, return an empty array: []
 
 Example format:
 [
-  {{"document_id": "abc123", "relevance_score": 0.95, "matched_content": "Contains information about..."}},
-  {{"document_id": "def456", "relevance_score": 0.78, "matched_content": "Discusses..."}}
+  {"document_id": "abc123", "relevance_score": 0.95, "matched_content": "Contains information about..."},
+  {"document_id": "def456", "relevance_score": 0.78, "matched_content": "Discusses..."}
 ]
-""".format(doc_list=doc_summaries)
+"""
         
         response = grok_client.chat.completions.create(
             model=grok_model,
